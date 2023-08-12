@@ -48,7 +48,16 @@ db: List[User] = [
 
 @app.get("/")
 async def root():
-    return {"greeting": "Hello World!"}
+    return {
+        "message": "Welcome to the User Management API!",
+        "version": "1.0",
+        "endpoints": {
+            "get_users": "/api/v1/users",
+            "create_user": "/api/v1/users",
+            "delete_user": "/api/v1/users/{id}",
+            "update_user": "/api/v1/users/{id}",
+        },
+    }
 
 
 @app.get("/api/v1/users")
