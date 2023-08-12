@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "fastapi-crud-app"
+version = "0.1.0"
+description = ""
+authors = ["Rojer Du <rojerdu.dev@gmail.com>"]
+readme = "README.md"
+packages = [{include = "fastapi_crud_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.101.0"
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
+black = "^23.7.0"
+isort = "^5.12.0"
+ruff = "^0.0.284"
+mypy = "^1.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
