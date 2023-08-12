@@ -1,8 +1,8 @@
 from typing import List
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 
 from models import Gender, Role, User
 
@@ -54,6 +54,21 @@ async def root():
 @app.get("/api/v1/users")
 async def get_users():
     return db
+
+@app.post("/api/v1/users")
+async def create_user(user: User):
+    db.append(user)
+    return {"id": user.id}
+
+@app.delete("/api/v1/users/{id}")
+async def delete_user(id: UUID):
+    for user in db:
+        if user.id == id:
+            db.remove(user)
+            return
+        raise HTTPException(
+            status_code=404, detail=f"Delete user failed, id {id} not found."
+        )
 
 
 if __name__ == "__main__":
